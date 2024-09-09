@@ -1,0 +1,1 @@
+start mongod --dbpath "D:\mongodb - replika\podaci" --logpath "D:\mongodb - replika\logovi\mongod.log" --port 27017 --storageEngine=wiredTiger --replSet mojaReplika
