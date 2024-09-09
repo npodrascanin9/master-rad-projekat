@@ -1,0 +1,64 @@
+<div class="container-fluid mt-5">
+  <div class="row">
+      <div class="col-6 mt-2">
+          <div class="card">
+              <div class="card-header bg-primary">
+                  <div class="card-title text-light">
+                     Spisak poslednjih pozicija vozila
+                  </div>
+              </div>
+
+              <div class="card-body">
+                  <div class="table-responsive">
+                      <table class="table">
+                          <thead>
+                              <tr>
+                                  <th>Tablica</th>
+                                  <th>Tip</th>
+                                  <th>Datum i vreme</th>
+                                  <th>Brzina</th>
+                                  <th>Sirina</th>
+                                  <th>Duzina</th>
+                              </tr>
+                          </thead>
+      
+                          <tbody>
+                              <tr *ngFor="let zapis of vozila">
+                                  <td>{{ zapis.tablica }}</td>
+                                  <td>{{ zapis.tip }}</td>
+                                  <td>{{ zapis.poslednjaPozicija.datumUnosa | date:'dd.MM.yy HH:mm:ss' }}</td>
+                                  <td>{{ zapis.poslednjaPozicija.brzinaKretanja }}</td>
+                                  <td>{{ zapis.poslednjaPozicija.koordinate[0] }}</td>
+                                  <td>{{ zapis.poslednjaPozicija.koordinate[1] }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div *ngFor="let vozilo of vozila" class="col-6 mt-2">
+      <div class="card">
+        <div class="card-header bg-primary">
+          <div class="card-title text-light">
+            Brzina kretanja vozila sa tablicom: {{ vozilo.tablica }}
+          </div>
+        </div>
+        
+        <div class="card-body">
+          <apx-chart 
+            [series]="[{ name: 'Brzina', data: vozilo.podaci }]" 
+            [chart]="opcijeGrafikona.chart" 
+            [xaxis]="opcijeGrafikona.xaxis">
+          </apx-chart>
+        </div>
+      </div>
+    </div>
+    
+    
+      
+
+  </div>
+</div>
